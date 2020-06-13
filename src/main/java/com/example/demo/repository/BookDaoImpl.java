@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 
 
-//Spring MVCでデータ層のクラス（DAO等のDBアクセスを行うクラス）に付与する。
+//@RepositoryはSpring MVCでデータ層のクラス（DAO等のDBアクセスを行うクラス）に付与する。
 @Repository
 public class BookDaoImpl {
   
