@@ -3,7 +3,7 @@ package com.example.demo.entity;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
-public class books {
+public class Book {
   
   private int id;
   private String title;
@@ -11,7 +11,7 @@ public class books {
   private String publisher;
   private Date   buyDate;
   private Date   releaseDate;
-  private String overview;
+  private String overView;
 
   private LocalDateTime deadline;
 
@@ -49,5 +49,26 @@ public class books {
   public void setBuyDate(Date buyDate) {
     this.buyDate = buyDate;
   }
+
+  public Date getReleaseDate() {
+    return releaseDate;
+  }
+  public void setReleaseDate(Date releaseDate) {
+    this.releaseDate = releaseDate;
+  }
+
+  public String getOverView() {
+    return overView;
+  }
+  public void setOverView(String overView) {
+    this.overView = overView;
+  }
+
+  public LocalDateTime getDeadline() {
+    return deadline;
+  }
+  public void setDeadline(LocalDateTime deadline) {
+    this.deadline = deadline;
+  }   
   
 }
