@@ -28,4 +28,26 @@ public class books {
   public void setTitle(String title) {
     this.title = title;
   }
+
+  public String getAuthor() {
+    return author;
+  }
+  public void setAuthor(String author) {
+    this.author = author;
+  }
+
+  public String getPublisher() {
+    return publisher;
+  }
+  public void setPublisher(String publisher) {
+    this.publisher = publisher;
+  }
+
+  public Date getBuyDate() {
+    return buyDate;
+  }
+  public void setBuyDate(Date buyDate) {
+    this.buyDate = buyDate;
+  }
+  
 }
