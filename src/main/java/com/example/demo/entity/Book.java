@@ -3,7 +3,7 @@ package com.example.demo.entity;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
-public class books {
+public class Book {
   
   private int id;
   private String title;
