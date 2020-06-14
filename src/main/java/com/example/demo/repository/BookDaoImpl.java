@@ -1,5 +1,18 @@
 package com.example.demo.repository;
 
+import java.sql.Timestamp;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Map;
+
+
+
+
+import com.example.demo.entity.Book;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +22,48 @@ import org.springframework.stereotype.Repository;
 
 //@RepositoryはSpring MVCでデータ層のクラス（DAO等のDBアクセスを行うクラス）に付与する。
 @Repository
-public class BookDaoImpl {
+public class BookDaoImpl implements BookDao{
   
   private final JdbcTemplate jdbcTemplate;
+
+  //＠Autowiredで引数JdbcTemplateをBookDaoImplクラスに注入
+  //https://dev.classmethod.jp/articles/springboot-what-is-bean/
+  @Autowired
+  public BookDaoImpl(JdbcTemplate jdbcTemplate) {
+    this.jdbcTemplate = jdbcTemplate;
+  }
+
+  @Override
+  public List<Book> findAll() {
+
+    String sql = "SELECT book.id, title, author, publisher, buyDate, releaseDate, overView ";
+
+    //book一覧をMapのListで取得
+    //queryForList() メソッドは java.util.List を返します。この List はカラム名をキーとし、カラムのデータを値とする java.util.Map を要素としてもちます。
+    List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql);
+    
+    //return用の空のListを用意
+    List<Book> list = new ArrayList<Book>();
+
+    //result : resultListが大事
+    for(Map<String, Object> result : resultList) {
+
+      //bookの配列を作り
+      Book book = new Book();
+			book.setId((int)result.get("id"));
+			book.setTitle((String)result.get("title"));
+			book.setAuthor((String)result.get("author"));
+			book.setPublisher((String)result.get("publisher"));
+      book.setBuyDate((Date)result.get("buyDate"));
+      book.setReleaseDate((Date)result.get("releaseDate"));
+      book.setOverView((String)result.get("overView"));
+      book.setDeadline(((Timestamp) result.get("deadline")).toLocalDateTime());
+    
+  }
+  return list;
+ }
+
+
+
+
 }
