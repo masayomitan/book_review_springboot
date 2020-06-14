@@ -8,8 +8,6 @@ import java.util.Optional;
 import java.util.Map;
 
 
-
-
 import com.example.demo.entity.Book;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +16,9 @@ import org.springframework.stereotype.Repository;
 
 
 
-
-
 //@RepositoryはSpring MVCでデータ層のクラス（DAO等のDBアクセスを行うクラス）に付与する。
 @Repository
-public class BookDaoImpl implements BookDao{
+public class BookDaoImpl implements BookDao {
   
   private final JdbcTemplate jdbcTemplate;
 
