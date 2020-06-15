@@ -9,7 +9,7 @@ public interface BookService {
 
   List<Book> findAll();
 
-  Optional<Book> getTask(int id);
+  Optional<Book> getBook(int id);
 
 	void insert(Book book);
 	
