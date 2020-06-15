@@ -15,6 +15,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 
+//Repositoryは、以下2つの役割を担う。
+
+//1.Serviceに対して、Entityのライフサイクルを制御するための操作（Repositoryインタフェース）を提供する。
+//Entityのライフサイクルを制御するための操作は、EntityオブジェクトへのCRUD操作となる。
+
+//2.Entityを永続化する処理(Repositoryインタフェースの実装クラス)を提供する。
+//Entityオブジェクトは、アプリケーションのライフサイクル(サーバの起動や、停止など)に依存しないレイヤに、永続化しておく必要がある。
+//実際の永続化処理は、O/R Mapperなどから提供されているAPIを使って行う。
+//この役割は、インフラストラクチャ層のRepositoryImplで実装することになる。
+
 
 //@RepositoryはSpring MVCでデータ層のクラス（DAO等のDBアクセスを行うクラス）に付与する。
 @Repository
