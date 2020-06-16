@@ -60,7 +60,11 @@ public class BookController {
       //bookを取得(Optionalでラップ)
       Optional<Book> bookOpt = bookService.getBook(id);
       
-
+        List<Book> books = bookService.findAll();
+        
+        model.addAttribute("books", books);
+        model.addAttribute("bookId", id);
+        model.addAttribute("title", "更新用フォーム");
 
       return "book/index";
     }
