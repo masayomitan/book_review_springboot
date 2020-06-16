@@ -51,7 +51,7 @@ public class BookServiceImpl implements BookService {
 	public void update(Book book) {
 		//Taskを更新 idが無ければ例外発生
 		if (dao.update(book) == 0) {
-			throw new BookNotFoundException("error")
+			throw new BookNotFoundException("error");
 		}
 	}
 
@@ -59,7 +59,7 @@ public class BookServiceImpl implements BookService {
 	public void deleteById(int id) {
 		//Taskを更新 idがなければ例外発生
 		if (dao.deleteById(id) == 0) {
-			throw new BookNotFoundException("error")
+			throw new BookNotFoundException("error");
 		}
   }
   
