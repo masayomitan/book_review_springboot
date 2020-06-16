@@ -87,7 +87,7 @@ public class BookController {
      */
     //メソッドの引数に@ModelAttributeをつけると送信されたリクエストのbodyの情報を取得できる
     @PostMapping
-    public String update(@ModelAttribute Book book,
+    public String edit(@ModelAttribute Book book,
                          Model model,
                          BindingResult result,
                          @RequestParam("bookId") int Id,
