@@ -17,6 +17,8 @@ public interface BookDao {
 	Optional<Book> findById(int id);
 
 	void insert(Book book);
+
+	void save(Book book);
 	
 	int update(Book book);
 	

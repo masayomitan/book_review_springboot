@@ -48,6 +48,11 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
+  public void save(Book book){
+    dao.save(book);
+  }
+
+  @Override
 	public void update(Book book) {
 		//Taskを更新 idが無ければ例外発生
 		if (dao.update(book) == 0) {

@@ -11,7 +11,9 @@ public interface BookService {
 
   Optional<Book> getBook(int id);
 
-	void insert(Book book);
+  void insert(Book book);
+  
+  void save(Book book);
 	
   void update(Book book);
 	
