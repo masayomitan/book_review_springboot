@@ -10,13 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller
 @RequestMapping("/book")
@@ -33,7 +33,8 @@ public class BookController  {
   
   @GetMapping
 	public String index(Model model) {
-		model.addAttribute("books", bookService.findAll());
+    List<Book> books = bookService.findAll();
+		model.addAttribute("books", books);
 		return "index";
 	}
 
@@ -44,6 +45,15 @@ public class BookController  {
         return "books/new";
     }
 
+    @PostMapping
+	  public String create(@ModelAttribute("book") @Validated Book book, BindingResult result, Model model) {
+      if (result.hasErrors()) {
+        return "new";
+      } else {
+        bookService.save(book);
+        return "redirect:/book";
+      }
+    }
 
     //メソッドの引数に@PathVariableを設定するとURL上の値を取得することができる
     @GetMapping("{id}")
@@ -60,26 +70,23 @@ public class BookController  {
 		  return "edit";
 	  }
 
-    @PostMapping
-	  public String create(@ModelAttribute("item") @Validated Book book, BindingResult result, Model model) {
-      if (result.hasErrors()) {
-        return "new";
-      } else {
-        bookService.save(book);
-        return "redirect:/book";
-      }
-    }
-
-      
-    @PostMapping("/delete")
-    public String delete(
-      @RequestParam("bookId") int id,
-      Model model) {
-      
-        //本を一件削除しリダイレクト
-        bookService.deleteById(id);
-        return "redirect:/book";
-    }
-
     
+      
+    @PostMapping("{id}")
+	public String update(@PathVariable int id, @ModelAttribute("book") @Validated Book book, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			model.addAttribute("book", book);
+			return "edit";
+		} else {
+			book.setId(id);
+			bookService.update(book);
+			return "redirect:/books";
+		}
+	}
+	
+	@DeleteMapping("{id}")
+	public String delete(@PathVariable int id) {
+		bookService.deleteById(id);
+		return "redirect:/books"; 
+	}
 }
