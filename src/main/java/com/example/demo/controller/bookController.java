@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.demo.entity.Book;
 import com.example.demo.service.*;
@@ -19,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/book")
-public class BookController  {
+@RequestMapping("/books")
+public class BookController {
      
   @Autowired
   private final BookService bookService;
@@ -37,7 +38,6 @@ public class BookController  {
 		model.addAttribute("books", books);
 		return "index";
 	}
-
 
 
     @GetMapping("new")
@@ -58,15 +58,17 @@ public class BookController  {
     //メソッドの引数に@PathVariableを設定するとURL上の値を取得することができる
     @GetMapping("{id}")
     public String show(@PathVariable int id, Model model) {
-      model.addAttribute("book", bookService.getBook(id));
+      Optional<Book> book = bookService.getBook(id);
+      model.addAttribute("book", book);
       return "show";
     }
 
-
+    
     //メソッドの引数に@ModelAttributeをつけると送信されたリクエストのbodyの情報を取得できる
     @GetMapping("{id}/edit")
 	  public String edit(@PathVariable int id, @ModelAttribute("book") Book book, Model model) {
-		  model.addAttribute("book", bookService.getBook(id));
+		  Optional<Book> editBook = bookService.getBook(id);
+      model.addAttribute("book", editBook);
 		  return "edit";
 	  }
 
