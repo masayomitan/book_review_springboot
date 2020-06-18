@@ -6,24 +6,25 @@ import java.util.Optional;
 
 import com.example.demo.entity.Book;
 
+import org.springframework.stereotype.Repository;
+
+
 
 //interfaceは初めに処理内容を具体的に書かず、後からメソッドの実装をして使用するために使う
 //後からメソッドの実装をするため、処理を変えたい場合に有効
 
-public interface BookDao {
+@Repository
+public interface BookRepository {
 
   List<Book> findAll();
+
+	Optional<Book> getBook(int id);
 	
-	Optional<Book> findById(int id);
-
-	void insert(Book book);
-
 	void save(Book book);
 	
 	int update(Book book);
 	
 	int deleteById(int id);
-
 
   
 }
