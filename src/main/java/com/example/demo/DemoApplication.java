@@ -6,14 +6,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
-
 @SpringBootApplication
 @ComponentScan(basePackages = "com.example.demo.repository.BookRepository")
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
-public class Application {
+public class DemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(DemoApplication.class, args);
 	}
 
 }
+
+
+

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 //後からメソッドの実装をするため、処理を変えたい場合に有効
 
 @Repository
-public interface BookRepository {
+public interface BookRepository  {
 
   List<Book> findAll();
 
