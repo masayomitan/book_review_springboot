@@ -36,7 +36,7 @@ public class BookController {
 	public String index(Model model) {
     List<Book> books = bookService.findAll();
 		model.addAttribute("books", books);
-		return "index";
+		return "books/index";
 	}
 
 
