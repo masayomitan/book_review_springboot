@@ -1,9 +1,15 @@
-package com.example.demo.entity;
+package com.example.demo.domain;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
 
+import javax.persistence.Table;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+
+@EntityScan
+@Table(name="book_review_springboot")
 public class Book {
   
   private int id;
