@@ -3,12 +3,13 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import com.example.demo.domain.Book;
 import com.example.demo.repository.BookRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BookService {
@@ -23,9 +24,9 @@ public class BookService {
 		return bookRepository.findAll();
 	}
   
-  @Transactional
-	public Optional<Book> getBook(int id) {
-		return bookRepository.getBook(id);
+	@Transactional
+	public Optional<Book> findOne(int id) {
+		return bookRepository.findOne(id);
 	}
 
 	@Transactional
@@ -44,7 +45,7 @@ public class BookService {
 	@Transactional
 	public void deleteById(int id) {
 		//Taskを更新 idがなければ例外発生
-		if (bookRepository.deleteById(id) == 0) {
+		if (bookRepository.delete(id) == 0) {
 			throw new BookNotFoundException("error");
 		}
   }
