@@ -3,7 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.demo.entity.Book;
+import com.example.demo.domain.*;
 import com.example.demo.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class BookController {
 	public String index(Model model) {
     List<Book> books = bookService.findAll();
 		model.addAttribute("books", books);
-		return "books/index";
+		return "index";
 	}
 
 
