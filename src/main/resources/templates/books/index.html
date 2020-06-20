@@ -6,8 +6,28 @@
   </head>
   <body>
     <h1>Springboot Helloooooo Sample</h1>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>タイトル</th>
+        <th>著者</th>
+        <th>出版社</th>
+        <th>発売日</th>
+        <th>購入日</th>
+        <th>概要</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
     <p>
-      <span th:text="${message}"></span>!!!
+      <tr th:each="book:${books}" th:object="${book}"></tr>
+            <td th:text="*{id}"></td>
+            <td th:text="*{title}"></td>
+            <td th:text="*{author}"></td>
+            <td th:text="*{publisher}"></td>
+            <td th:text="*{releaseDate}"></td>
+            <td th:text="*{buyDate}"></td>
+            <td th:text="*{overView}"></td>
     </p>
   </body>
 </html>
