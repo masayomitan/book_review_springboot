@@ -1,0 +1,10 @@
+-- CREATE TABLE book (
+--   id int(5) NOT NULL AUTO_INCREMENT,
+--   title varchar(50) ,
+--   author varchar(50) ,
+--   publisher varchar(50) ,
+--   buyDate date,
+--   releaseDate date,
+--   deadline datetime ,
+--   PRIMARY KEY (id)
+-- ) ;
