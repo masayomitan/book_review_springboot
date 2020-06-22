@@ -1,9 +1,9 @@
 package com.example.demo.domain;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
@@ -11,15 +11,14 @@ import javax.persistence.Id;
 public class Book {
 
   @Id
-  private Integer id;
+  @GeneratedValue
+  private int id;
   private String title;
   private String author;
   private String publisher;
   private Date   buyDate;
   private Date   releaseDate;
   private String overView;
-
-  private LocalDateTime deadline;
 
   public int getId() {
     return id;
@@ -70,11 +69,4 @@ public class Book {
     this.overView = overView;
   }
 
-  public LocalDateTime getDeadline() {
-    return deadline;
-  }
-  public void setDeadline(LocalDateTime deadline) {
-    this.deadline = deadline;
-  }   
-  
 }
