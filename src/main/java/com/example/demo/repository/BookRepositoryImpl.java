@@ -78,8 +78,8 @@ public class BookRepositoryImpl implements BookRepository{
 
       @Override
       public void save(Book book) {
-        jdbcTemplate.update("INSERT INTO book(id INT(11) AUTO_INCREMENT, title, author, publisher, buy_Date, release_Date, over_View) VALUES(?, ?, ?, ?, ?, ?, ?)",
-            book.getId(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getOverView() );
+        jdbcTemplate.update("INSERT INTO book(title, author, publisher, buy_Date, release_Date, over_View) VALUES(?, ?, ?, ?, ?, ?)",
+        book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getOverView() );
       }
       
       @Override
