@@ -27,14 +27,14 @@
       </tr>
     <p>
 
-      <tr th:each="book : ${book}" th:object="${book}"></tr>
-        <td th:text=${id}></td>
-        <td th:text="*{title}"></td>
-        <td th:text="*{author}"></td>
-        <td th:text="*{publisher}"></td>
-        <td th:text="*{releaseDate}"></td>
-        <td th:text="*{buyDate}"></td>
-        <td th:text="*{overView}"></td>
+      <tr th:each="book : ${book}">
+        <td th:text=${book.id}></td>
+        <td th:text=${book.title}></td>
+        <td th:text=${book.author}></td>
+        <td th:text=${book.publisher}></td>
+        <td th:text=${book.releaseDate}></td>
+        <td th:text=${book.buyDate}></td>
+        <td th:text=${book.overView}></td>
     </p>
     <td><a class="btn btn-default btn-xs" th:href="@{/book/{id}(id=*{id})}">参照</a></td>
     <td><a class="btn btn-default btn-xs" th:href="@{/book/{id}/edit(id=*{id})}">編集</a></td>

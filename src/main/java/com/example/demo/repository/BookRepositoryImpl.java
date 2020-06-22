@@ -2,7 +2,7 @@ package com.example.demo.repository;
 
 
 import java.sql.Date;
-import java.sql.Timestamp;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +31,7 @@ public class BookRepositoryImpl implements BookRepository{
   @Override
   public List<Book> findAll() {
 
-    String sql = "SELECT book.id, title, author, publisher, buy_Date, release_Date, over_View, deadline FROM Book";
+    String sql = "SELECT book.id, title, author, publisher, buy_Date, release_Date, over_View FROM Book";
 
     List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql);
 
@@ -46,7 +46,6 @@ public class BookRepositoryImpl implements BookRepository{
       book.setBuyDate((Date)result.get("buy_Date"));
       book.setReleaseDate((Date)result.get("release_Date"));
       book.setOverView((String)result.get("over_View"));
-      book.setDeadline(((Timestamp) result.get("deadline")).toLocalDateTime());
         }
       return list;
     }
@@ -56,7 +55,7 @@ public class BookRepositoryImpl implements BookRepository{
     @Override
     public Optional<Book> findOne(int id){
 
-      String sql = "SELECT book.id, title, author, publisher, buyDate, releaseDate, overView FROM Book"
+      String sql = "SELECT book.id, title, author, publisher, buy_Date, release_Date, over_View FROM Book"
       + "WHERE book.id = ?";
 
       Map<String, Object> result = jdbcTemplate.queryForMap(sql, id);
@@ -66,10 +65,10 @@ public class BookRepositoryImpl implements BookRepository{
           book.setTitle((String)result.get("title"));
           book.setAuthor((String)result.get("author"));
           book.setPublisher((String)result.get("publisher"));
-          book.setBuyDate((Date)result.get("buyDate"));
-          book.setReleaseDate((Date)result.get("releaseDate"));
-          book.setOverView((String)result.get("overView"));
-          book.setDeadline(((Timestamp) result.get("deadline")).toLocalDateTime());
+          book.setBuyDate((Date)result.get("buy_Date"));
+          book.setReleaseDate((Date)result.get("release_Date"));
+          book.setOverView((String)result.get("over_View"));
+         
 
         //taskをOptionalでラップする
         Optional<Book> taskOpt = Optional.ofNullable(book);
@@ -79,14 +78,14 @@ public class BookRepositoryImpl implements BookRepository{
 
       @Override
       public void save(Book book) {
-        jdbcTemplate.update("INSERT INTO book(id, title, author, publisher, buyDate, releaseDate, overView, deadline) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
-            book.getId(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getOverView(), book.getDeadline() );
+        jdbcTemplate.update("INSERT INTO book(id INT(11) AUTO_INCREMENT, title, author, publisher, buy_Date, release_Date, over_View) VALUES(?, ?, ?, ?, ?, ?, ?)",
+            book.getId(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getOverView() );
       }
       
       @Override
       public int update(Book book) {
-        return 	jdbcTemplate.update("UPDATE book SET id = ?, title = ?, author = ?, publisher = ?, buyDate = ?, releaseDate = ?, overView = ?, deadline = ? WHERE id = ?",
-        book.getId(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getOverView(), book.getDeadline() );
+        return 	jdbcTemplate.update("UPDATE book SET id = ?, title = ?, author = ?, publisher = ?, buy_Date = ?, release_Date = ?, over_View = ?, WHERE id = ?",
+        book.getId(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getOverView() );
     }
 
       @Override
