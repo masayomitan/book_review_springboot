@@ -33,20 +33,20 @@ public class BookRepositoryImpl implements BookRepository{
 
     String sql = "SELECT book.id, title, author, publisher, buy_Date, release_Date, over_View FROM Book";
 
-    List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql);
+    // List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql);
 
     List<Book> list = new ArrayList<Book>();
 
-    for(Map<String, Object> result : resultList) {
-      Book book = new Book();
-			book.setId((int)result.get("id"));
-			book.setTitle((String)result.get("title"));
-			book.setAuthor((String)result.get("author"));
-			book.setPublisher((String)result.get("publisher"));
-      book.setBuyDate((Date)result.get("buy_Date"));
-      book.setReleaseDate((Date)result.get("release_Date"));
-      book.setOverView((String)result.get("over_View"));
-        }
+    // for(Map<String, Object> result : resultList) {
+    //   Book book = new Book();
+		// 	book.setId((int)result.get("id"));
+		// 	book.setTitle((String)result.get("title"));
+		// 	book.setAuthor((String)result.get("author"));
+		// 	book.setPublisher((String)result.get("publisher"));
+    //   book.setBuyDate((Date)result.get("buy_Date"));
+    //   book.setReleaseDate((Date)result.get("release_Date"));
+    //   book.setOverView((String)result.get("over_View"));
+    //     }
       return list;
     }
 
@@ -78,8 +78,8 @@ public class BookRepositoryImpl implements BookRepository{
 
       @Override
       public void save(Book book) {
-        jdbcTemplate.update("INSERT INTO book(id INT(11) AUTO_INCREMENT, title, author, publisher, buy_Date, release_Date, over_View) VALUES(?, ?, ?, ?, ?, ?, ?)",
-            book.getId(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getOverView() );
+        jdbcTemplate.update("INSERT INTO book(title, author, publisher, buy_Date, release_Date, over_View) VALUES(?, ?, ?, ?, ?, ?)",
+        book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getOverView() );
       }
       
       @Override

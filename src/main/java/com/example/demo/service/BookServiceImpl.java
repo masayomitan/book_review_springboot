@@ -16,32 +16,32 @@ import org.springframework.stereotype.Service;
 public class BookServiceImpl implements BookService{
   
   
-  private final BookRepository Repo;
+  private final BookRepository repo;
 
   @Autowired
-	public BookServiceImpl(BookRepository Repo) {
-		this.Repo = Repo;
+	public BookServiceImpl(BookRepository repo) {
+		this.repo = repo;
 	}
 
 	@Override
 	public List<Book> findAll() {
-		return Repo.findAll();
+		return repo.findAll();
 	}
   
 	@Override
 	public Optional<Book> findOne(int id) {
-		return Repo.findOne(id);
+		return repo.findOne(id);
 	}
 
 	@Override
 	public void save(Book book) {
-		Repo.save(book);
+		repo.save(book);
 	}
 
   @Override
 	public void update(Book book) {
 		//Taskを更新 idが無ければ例外発生
-		if (Repo.update(book) == 0) {
+		if (repo.update(book) == 0) {
 			throw new BookNotFoundException("error");
 		}
 	}
@@ -49,7 +49,7 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public void delete(int id) {
 		//Taskを更新 idがなければ例外発生
-		if (Repo.delete(id) == 0) {
+		if (repo.delete(id) == 0) {
 			throw new BookNotFoundException("error");
 		}
   }

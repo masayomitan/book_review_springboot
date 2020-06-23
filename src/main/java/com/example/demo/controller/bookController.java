@@ -23,8 +23,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/books")
 public class BookController {
 
+
+  private final BookService bookService;
+
   @Autowired
-  private BookService bookService;
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
   
   @GetMapping
   public String index(Model model) {
