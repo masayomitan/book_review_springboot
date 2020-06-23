@@ -26,15 +26,14 @@
         <th></th>
       </tr>
     <p>
-
-      <tr th:each="books : ${book}" th:object="${book}">
+      <tr th:each="book : ${book}" th:object="${book}">
         <td th:text="*{id}"></td>
         <td th:text="*{title}"></td>
         <td th:text="*{author}"></td>
         <td th:text="*{publisher}"></td>
-        <td th:text="*{releaseDate}"></td>
-        <td th:text="*{buyDate}"></td>
-        <td th:text="*{overView}"></td>
+        <td th:text="*{release_Date}"></td>
+        <td th:text="*{buy_Date}"></td>
+        <td th:text="*{over_View}"></td>
     </p>
 
     <td><a class="btn btn-default btn-xs" th:href="@{/book/{id}(id=*{id})}">参照</a></td>
