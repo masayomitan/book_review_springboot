@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <title>Show Player - baseball</title>
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Show Player</h1>
+      <div th:object="${show}">
+        <div>
+          <td th:text="*{id}"></td>
+          <td th:text="*{title}"></td>
+          <td th:text="*{author}"></td>
+          <td th:text="*{publisher}"></td>
+          <td th:text="*{releaseDate}"></td>
+          <td th:text="*{buyDate}"></td>
+          <td th:text="*{overView}"></td>
+        </div>
+        
+      </div>
+      <div>
+        <a class="btn btn-default" th:href="@{/players/{id}/edit(id=*{id})}">編集</a>
+      </div>
+      <div class="pull-right">
+        <a class="btn btn-link" href="/players">一覧画面へ</a>
+      </div>
+    </div>
+  </body>
+</html>

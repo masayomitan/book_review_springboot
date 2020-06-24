@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
-import java.util.Optional;
-import java.util.List;
 
+import java.util.List;
+import java.util.Optional;
 
 import com.example.demo.repository.BookRepository;
 import com.example.demo.domain.Book;
@@ -29,7 +29,7 @@ public class BookServiceImpl implements BookService{
 	}
   
 	@Override
-	public Optional<Book> findOne(int id) {
+	public  Optional<Book> findOne(int id) {
 		return repo.findOne(id);
 	}
 

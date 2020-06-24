@@ -3,15 +3,17 @@ package com.example.demo.repository;
 
 import java.sql.Date;
 
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import com.example.demo.domain.Book;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Repository;
 public class BookRepositoryImpl implements BookRepository{
   
 
+  @Autowired
   private final JdbcTemplate jdbcTemplate;
 
   @Autowired
@@ -33,47 +36,35 @@ public class BookRepositoryImpl implements BookRepository{
 
     String sql = "SELECT book.id, title, author, publisher, buy_Date, release_Date, over_View FROM Book";
 
-    // List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql);
-
-    List<Book> list = new ArrayList<Book>();
-
-    // for(Map<String, Object> result : resultList) {
-    //   Book book = new Book();
-		// 	book.setId((int)result.get("id"));
-		// 	book.setTitle((String)result.get("title"));
-		// 	book.setAuthor((String)result.get("author"));
-		// 	book.setPublisher((String)result.get("publisher"));
-    //   book.setBuyDate((Date)result.get("buy_Date"));
-    //   book.setReleaseDate((Date)result.get("release_Date"));
-    //   book.setOverView((String)result.get("over_View"));
-    //     }
-      return list;
+    return jdbcTemplate.query(sql,new BeanPropertyRowMapper<Book>(Book.class));
     }
 
+
+    @Autowired
+    private NamedParameterJdbcTemplate template;
 
 
     @Override
-    public Optional<Book> findOne(int id){
+    public Optional<Book> findOne(int id) {
 
       String sql = "SELECT book.id, title, author, publisher, buy_Date, release_Date, over_View FROM Book"
-      + "WHERE book.id = ?";
+      + "WHERE id = :id";
 
-      Map<String, Object> result = jdbcTemplate.queryForMap(sql, id);
-
-      Book book = new Book();
-          book.setId((int)result.get("id"));
-          book.setTitle((String)result.get("title"));
-          book.setAuthor((String)result.get("author"));
-          book.setPublisher((String)result.get("publisher"));
-          book.setBuyDate((Date)result.get("buy_Date"));
-          book.setReleaseDate((Date)result.get("release_Date"));
-          book.setOverView((String)result.get("over_View"));
-         
-
-        //taskをOptionalでラップする
-        Optional<Book> taskOpt = Optional.ofNullable(book);
-        return taskOpt;
+      List<Book> result = template.query(sql, new MapSqlParameterSource().addValue("Id", id),
+      (rs, i) -> {
+        Book book = new Book();
+        book.setId(rs.getInt("id"));
+        book.setTitle(rs.getString("title"));
+        book.setAuthor(rs.getString("author"));
+        book.setPublisher(rs.getString("publisher"));
+        book.setBuyDate((Date)rs.getDate("buy_Date"));
+        book.setReleaseDate((Date)rs.getDate("release_Date"));
+        book.setOverView((String)rs.getString("over_View"));
+        return book;
+        });
+    return result.isEmpty() ? Optional.empty() : Optional.of(result.get(0));
     }
+
 
 
       @Override

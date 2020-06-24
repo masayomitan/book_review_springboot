@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.service.BookService;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.demo.domain.Book;
 
@@ -13,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -41,10 +43,8 @@ public class BookController {
     return "books/index";
   }
 
-
-
   @GetMapping("new")
-  public String newBook(@ModelAttribute("book") Book book, Model model) {
+  public String newBook(Model model) {
       return "books/new";
   }
 
@@ -57,8 +57,23 @@ public class BookController {
 			return "redirect:/books";
 		}
   }
-  
 
+
+  @GetMapping("{id}")
+	public String show(@PathVariable int id, Model model) {
+		Optional<Book> book = bookService.findOne(id);
+		model.addAttribute("book",  book);
+		return "books/show";
+	}
+  
+  
+	@GetMapping("{id}/edit")
+	public String edit(@PathVariable("id")  int id, Model model) {
+    Optional<Book> book = bookService.findOne(id);
+		model.addAttribute("book",  book);
+		return "books/edit";
+	}
 	
+
 
 }
