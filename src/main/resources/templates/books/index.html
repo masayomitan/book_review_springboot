@@ -34,14 +34,16 @@
         <td th:text="*{releaseDate}"></td>
         <td th:text="*{buyDate}"></td>
         <td th:text="*{overView}"></td>
-    </p>
+   
     <td><a class="btn btn-default btn-xs" th:href="@{/books/{id}(id=*{id})}">参照</a></td>
     <td><a class="btn btn-default btn-xs" th:href="@{/books/{id}/edit(id=*{id})}">編集</a></td>
     <td>
-      <!-- ⑤ -->
+  
       <form th:action="@{/books/{id}(id=*{id})}" th:method="delete">
         <input class="btn btn-default btn-xs" type="submit" value="削除" />
       </form>
+    </p>
+    
     </td>
   </tr>
 </tbody>
