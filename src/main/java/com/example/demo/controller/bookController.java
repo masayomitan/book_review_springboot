@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 
@@ -62,19 +59,18 @@ public class BookController {
 
   @GetMapping("{id}")
 	public String show(@PathVariable int id, Model model) {
-    //Bookを取得(findOneはOptionalで)
-    Optional<Book> book = bookService.findOne(id);
-    model.addAttribute("book",  book);
+    //Optional<Book> book = bookService.findOne(id);
+    //model.addAttribute("book", book);とやってもうまくいかない
+    //Optionalに含まれるオブジェクトをアンラップする必要がある。
+    //参考url https://ja.coder.work/so/java/2151854
+    bookService.findOne(id).ifPresent(o -> model.addAttribute("book", o));
 		return "books/show";
 	}
   
   
 	@GetMapping("{id}/edit")
 	public String edit(@PathVariable("id") int id, @ModelAttribute("book") Book book, Model model) {
-    //Optional<Book> book = bookService.findOne(id);
-    //model.addAttribute("book", book);とやってもうまくいかない
-    //Optionalに含まれるオブジェクトをアンラップする必要がある。
-    //参考url https://ja.coder.work/so/java/2151854
+   //上のshowメソッドと同じ
 		bookService.findOne(id).ifPresent(o -> model.addAttribute("book", o));
 		return "books/edit";
 	}
