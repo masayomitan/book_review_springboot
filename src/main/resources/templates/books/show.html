@@ -7,26 +7,45 @@
     <script src="/js/bootstrap.js"></script>
   </head>
   <body>
-    <div class="container">
-      <h1>Show Player</h1>
-      <div th:object="${show}">
-        <div>
-          <td th:text="*{id}"></td>
-          <td th:text="*{title}"></td>
-          <td th:text="*{author}"></td>
-          <td th:text="*{publisher}"></td>
-          <td th:text="*{releaseDate}"></td>
-          <td th:text="*{buyDate}"></td>
-          <td th:text="*{overView}"></td>
-        </div>
-        
+  <div class="container">
+    <h1>Show </h1>
+    <div th:object="${book}">
+      <div>
+        <label>ID</label>
+        <p th:text="${id}"></p>
       </div>
       <div>
-        <a class="btn btn-default" th:href="@{/players/{id}/edit(id=*{id})}">編集</a>
+        <label>名前</label>
+        <p th:text="${title}"></p>
       </div>
-      <div class="pull-right">
-        <a class="btn btn-link" href="/players">一覧画面へ</a>
+      <div>
+        <label>出版日</label>
+        <p th:text="${author}"></p>
+      </div>
+      <div>
+        <label>チーム名</label>
+        <p th:text="${publisher}"></p>
+      </div>
+      <div>
+        <label>購入日
+        </label>
+        <p th:text="${buyDate}"></p>
+      </div>
+      <div>
+        <label>販売日</label>
+        <p th:text="${releaseDate}"></p>
+      </div>
+      <div>
+        <label>概要</label>
+        <p th:text="${overView}"></p>
       </div>
     </div>
-  </body>
+    <div>
+      <a class="btn btn-default" th:href="@{/books/{id}/edit(id=*{id})}">編集</a>
+    </div>
+    <div class="pull-right">
+      <a class="btn btn-link" href="/books">一覧画面へ</a>
+    </div>
+  </div>
+</body>
 </html>

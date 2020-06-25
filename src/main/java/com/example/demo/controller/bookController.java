@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 
@@ -35,10 +38,8 @@ public class BookController {
   
   @GetMapping
   public String index(Model model) {
-
      //Taskのリストを取得する
-     List<Book> book = bookService.findAll();
-     
+    List<Book> book = bookService.findAll();
     model.addAttribute("book", book);
     return "books/index";
   }
@@ -61,19 +62,34 @@ public class BookController {
 
   @GetMapping("{id}")
 	public String show(@PathVariable int id, Model model) {
-		Optional<Book> book = bookService.findOne(id);
-		model.addAttribute("book",  book);
+    //Bookを取得(findOneはOptionalで)
+    Optional<Book> book = bookService.findOne(id);
+    model.addAttribute("book",  book);
 		return "books/show";
 	}
   
   
 	@GetMapping("{id}/edit")
-	public String edit(@PathVariable("id")  int id, Model model) {
-    Optional<Book> book = bookService.findOne(id);
-		model.addAttribute("book",  book);
+	public String edit(@PathVariable("id") int id, @ModelAttribute("book") Book book, Model model) {
+    //Optional<Book> book = bookService.findOne(id);
+    //model.addAttribute("book", book);とやってもうまくいかない
+    //Optionalに含まれるオブジェクトをアンラップする必要がある。
+    //参考url https://ja.coder.work/so/java/2151854
+		bookService.findOne(id).ifPresent(o -> model.addAttribute("book", o));
 		return "books/edit";
 	}
-	
+  
+  @PostMapping("{id}")
+  public String update(@PathVariable int id, @ModelAttribute("book") @Validated Book book, BindingResult result, Model model){
+    if (result.hasErrors()) {
+			model.addAttribute("book", book);
+			return "edit";
+		} else {
+			book.setId(id);
+			bookService.update(book);
+			return "redirect:/books";
+		}
+	}
 
 
 }
