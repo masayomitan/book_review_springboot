@@ -59,8 +59,6 @@ public class BookRepositoryImpl implements BookRepository{
         return bookOpt;
 	}
 
-
-
       @Override
       public void save(Book book) {
         jdbcTemplate.update("INSERT INTO book(title, author, publisher, buy_date, release_date, over_view) VALUES(?, ?, ?, ?, ?, ?)",
@@ -69,9 +67,9 @@ public class BookRepositoryImpl implements BookRepository{
       
       @Override
       public int update(Book book) {
-        return 	jdbcTemplate.update("UPDATE book SET (title, author, publisher, buy_date, release_date, over_view) VALUES(?, ?, ?, ?, ?, ?)  WHERE id = ? ",
-        book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getOverView() );
-    }
+        return   jdbcTemplate.update("UPDATE book SET title = ?, author = ?, publisher = ?, buy_date = ?, release_date = ?, over_view = ? WHERE id = ?",
+        book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getOverView(), book.getId() );
+      }
 
       @Override
       public int delete(int id) {

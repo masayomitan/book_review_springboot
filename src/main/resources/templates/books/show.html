@@ -9,35 +9,35 @@
   <body>
   <div class="container">
     <h1>Show </h1>
-    <div th:object="${book}">
+    <table class="table" th:object="${book}">
       <div>
         <label>ID</label>
-        <p th:text="${id}"></p>
+        <!-- <p th:text="*{id}"></p> -->
       </div>
       <div>
         <label>名前</label>
-        <p th:text="${title}"></p>
+        <p th:text="*{title}"></p>
       </div>
       <div>
         <label>出版日</label>
-        <p th:text="${author}"></p>
+        <p th:text="*{author}"></p>
       </div>
       <div>
         <label>チーム名</label>
-        <p th:text="${publisher}"></p>
+        <p th:text="*{publisher}"></p>
       </div>
       <div>
         <label>購入日
         </label>
-        <p th:text="${buyDate}"></p>
+        <p th:text="*{buyDate}"></p>
       </div>
       <div>
         <label>販売日</label>
-        <p th:text="${releaseDate}"></p>
+        <p th:text="*{releaseDate}"></p>
       </div>
       <div>
         <label>概要</label>
-        <p th:text="${overView}"></p>
+        <p th:text="*{overView}"></p>
       </div>
     </div>
     <div>
