@@ -4,8 +4,8 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demo.entity.Book;
 import com.example.demo.repository.BookRepository;
-import com.example.demo.domain.Book;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,7 +40,7 @@ public class BookServiceImpl implements BookService{
 
   @Override
 	public void update(Book book) {
-		//Taskを更新 idが無ければ例外発生
+		//Bookを更新 idが無ければ例外発生
 		if (repo.update(book) == 0) {
 			throw new BookNotFoundException("error");
 		}
@@ -48,9 +48,11 @@ public class BookServiceImpl implements BookService{
 
 	@Override
 	public void delete(int id) {
-		//Taskを更新 idがなければ例外発生
+		//Bookを更新 idがなければ例外発生
 		if (repo.delete(id) == 0) {
 			throw new BookNotFoundException("error");
+		}else{
+			repo.delete(id);
 		}
   }
 

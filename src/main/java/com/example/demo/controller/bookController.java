@@ -1,10 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Book;
 import com.example.demo.service.BookService;
 
 import java.util.List;
-
-import com.example.demo.domain.Book;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -69,7 +70,7 @@ public class BookController {
   
   
 	@GetMapping("{id}/edit")
-	public String edit(@PathVariable("id") int id, @ModelAttribute("book") Book book, Model model) {
+	public String edit(@PathVariable int id, @ModelAttribute("book") Book book, Model model) {
    //上のshowメソッドと同じ
 		bookService.findOne(id).ifPresent(o -> model.addAttribute("book", o));
 		return "books/edit";
@@ -86,13 +87,12 @@ public class BookController {
 			return "redirect:/books";
 		}
   }
-  
-  @DeleteMapping("{id}")
-	public String delete(@PathVariable int id) {
+
+  @DeleteMapping("books/{id}")
+	public String delete(@RequestParam("id") int id) {
 		bookService.delete(id);
 		return "redirect:/books"; 
-	}
-
+  }
 
 
 }

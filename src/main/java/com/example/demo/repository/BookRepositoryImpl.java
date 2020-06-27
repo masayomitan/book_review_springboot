@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import com.example.demo.domain.Book;
+import com.example.demo.entity.Book;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -32,8 +32,9 @@ public class BookRepositoryImpl implements BookRepository{
   public List<Book> findAll() {
 
     String sql = "SELECT book.id, title, author, publisher, buy_date, release_date, over_view FROM Book";
-
+    
     return jdbcTemplate.query(sql,new BeanPropertyRowMapper<Book>(Book.class));
+    
   }
 
 
