@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
+
+// @ResponseBody means the returned String is the response, not a view name
+// @RequestParam means it is a parameter from the GET or POST request
 
 
 
@@ -87,12 +88,15 @@ public class BookController {
 			return "redirect:/books";
 		}
   }
-
-  @DeleteMapping("books/{id}")
-	public String delete(@RequestParam("id") int id) {
+  
+  @DeleteMapping("{id}")
+	public String delete(@PathVariable("id") int id) {
+    Book book = bookService.findOne(id).get();
+    if(book == null){
+      return "";
+    }
 		bookService.delete(id);
 		return "redirect:/books"; 
   }
-
 
 }
