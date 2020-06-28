@@ -20,6 +20,7 @@
         <th>出版社</th>
         <th>発売日</th>
         <th>購入日</th>
+        <th>ジャンル</th>
         <th>概要</th>
         <th></th>
         <th></th>
@@ -33,6 +34,7 @@
         <td th:text="*{publisher}"></td>
         <td th:text="*{releaseDate}"></td>
         <td th:text="*{buyDate}"></td>
+        <td th:text="*{genre}"></td>
         <td th:text="*{overView}"></td>
         <td><a class="btn btn-default btn-xs" th:href="@{/books/{id}(id=*{id})}">参照</a></td>
         <td><a class="btn btn-default btn-xs" th:href="@{/books/{id}/edit(id=*{id})}">編集</a></td>

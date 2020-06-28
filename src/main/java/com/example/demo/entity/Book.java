@@ -13,6 +13,7 @@ public class Book {
   private String publisher;
   private Date   buyDate;
   private Date   releaseDate;
+  private String genre;
   private String overView;
 
   public int getId() {
@@ -55,6 +56,13 @@ public class Book {
   }
   public void setReleaseDate(Date releaseDate) {
     this.releaseDate = releaseDate;
+  }
+
+  public String getGenre() {
+    return genre;
+  }
+  public void setGenre(String genre) {
+    this.genre = genre;
   }
 
   public String getOverView() {
