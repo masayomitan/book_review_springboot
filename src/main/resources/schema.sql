@@ -5,6 +5,7 @@ CREATE TABLE book (
   publisher varchar(20) DEFAULT NULL,
   buy_Date date,
   release_Date date,
+  genre varchar(20) DEFAULT NULL,
   over_View varchar(50) DEFAULT NULL,
   PRIMARY KEY (id)
 ) ;
