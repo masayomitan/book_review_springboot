@@ -59,12 +59,13 @@ public class BookController {
   }
 
 
-  @GetMapping("{id}")
-	public String show(@PathVariable int id, Model model) {
     //Optional<Book> book = bookService.findOne(id);
-    //model.addAttribute("book", book);とやってもうまくいかない
+    //model.addAttribute("book", book);
+    //とやってもうまくいかない
     //Optionalに含まれるオブジェクトをアンラップする必要がある。
     //参考url https://ja.coder.work/so/java/2151854
+  @GetMapping("{id}")
+	public String show(@PathVariable int id, Model model) {
     bookService.findOne(id).ifPresent(o -> model.addAttribute("book", o));
 		return "books/show";
 	}
