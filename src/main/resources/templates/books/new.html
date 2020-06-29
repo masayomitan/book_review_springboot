@@ -33,16 +33,17 @@
           <label class="control-label">発売日</label>
           <input class="form-control" type="date" name="releaseDate" />
         </div>
+
         <div class="form-group">
           <label class="control-label">ジャンル</label>
-          <input class="form-control" type="select" name="releaseDate" />
+          <select name="genre">
+            <option value="">---</option>
+            <option th:each="book : ${selectBooks}" th:value="*{book.value}"
+             th:text="*{book.value}" th:selected="*{book.value} == *{selectBooks}"  ></option>
+          </select>
+          
         </div>
-        <div class="form-group">
-        <select id="singleSelect" name="selectedItem">
-          <option value="">---</option>
-          <option th:each="item : ${selectItems}" th:value="*{genre}" th:text="*{genre}" th:selected="*{genre} == *{selectedItem}">singleSelect</option>
-         </select>
-        </div>
+
         <div class="form-group">
           <label class="control-label">概要</label>
           <input class="form-control" type="text" name="overView" />

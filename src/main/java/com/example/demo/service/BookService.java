@@ -14,6 +14,8 @@ public interface BookService {
 
 	Optional<Book> findOne(int id);
 	
+	void insert(Book book);
+	
 	void save(Book book);
 	
 	void update(Book book);

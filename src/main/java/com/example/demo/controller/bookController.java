@@ -3,7 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.entity.Book;
 import com.example.demo.service.BookService;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,10 +45,27 @@ public class BookController {
     return "books/index";
   }
 
+
+  private Map<String,String> getGenre(){
+    Map<String, String> selectMap = new LinkedHashMap<String, String>();
+    selectMap.put("1", "小説");
+    selectMap.put("2", "経営・戦略");
+    selectMap.put("3", "政治・経済");
+    selectMap.put("4", "IT");
+    selectMap.put("5", "自己啓発");
+    selectMap.put("6", "タレント本");
+    selectMap.put("7", "その他");
+    return selectMap;
+  } 
+  
+
   @GetMapping("new")
   public String newBook(Model model) {
+    model.addAttribute("selectBooks",getGenre());
       return "books/new";
   }
+
+
 
   @PostMapping
 	public String create(@ModelAttribute("book") @Validated Book book, BindingResult result, Model model) {

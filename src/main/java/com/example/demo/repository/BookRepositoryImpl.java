@@ -62,15 +62,22 @@ public class BookRepositoryImpl implements BookRepository{
 	}
 
       @Override
+      public void insert(Book book) {
+        jdbcTemplate.update("INSERT INTO book(genre) VALUES(?)",
+        book.getGenre() );
+      }
+
+      @Override
       public void save(Book book) {
         jdbcTemplate.update("INSERT INTO book(title, author, publisher, buy_date, release_date, genre, over_view) VALUES(?, ?, ?, ?, ?, ?, ?)",
         book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getGenre(), book.getOverView() );
       }
       
+      
       @Override
       public int update(Book book) {
         return   jdbcTemplate.update("UPDATE book SET title = ?, author = ?, publisher = ?, buy_date = ?, release_date = ?, genre = ?, over_view = ? WHERE id = ?",
-        book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getGenre(), book.getOverView(), book.getId() );
+        book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getGenre(),book.getOverView(), book.getId() );
       }
 
       @Override

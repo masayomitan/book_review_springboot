@@ -3,7 +3,6 @@ package com.example.demo.entity;
 import java.sql.Date;
 
 
-
 public class Book {
 
 
@@ -71,5 +70,6 @@ public class Book {
   public void setOverView(String overView) {
     this.overView = overView;
   }
+
 
 }

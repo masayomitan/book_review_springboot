@@ -13,6 +13,8 @@ public interface BookRepository  {
 
 	Optional<Book> findOne(int id);
 	
+	void insert(Book book);
+
 	void save(Book book);
 	
 	int update(Book book);
