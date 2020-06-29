@@ -2,7 +2,6 @@ package com.example.demo.entity;
 
 import java.sql.Date;
 
-
 public class Book {
 
 
@@ -14,6 +13,7 @@ public class Book {
   private Date   releaseDate;
   private String genre;
   private String overView;
+  private byte[] imgFile;
 
   public int getId() {
     return id;
@@ -70,6 +70,14 @@ public class Book {
   public void setOverView(String overView) {
     this.overView = overView;
   }
+
+  public byte[] getImgFile() {
+    return imgFile;
+}
+public void setImgFile(byte[] imgFile) {
+    this.imgFile = imgFile;
+}
+
 
 
 }
