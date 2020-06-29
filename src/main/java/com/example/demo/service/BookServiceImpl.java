@@ -33,10 +33,6 @@ public class BookServiceImpl implements BookService{
 		return repo.findOne(id);
 	}
 
-	@Override
-	public void insert(Book book) {
-		repo.insert(book);
-	}
 
 	@Override
 	public void save(Book book) {

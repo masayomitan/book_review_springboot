@@ -12,8 +12,6 @@ public interface BookRepository  {
   List<Book> findAll();
 
 	Optional<Book> findOne(int id);
-	
-	void insert(Book book);
 
 	void save(Book book);
 	
