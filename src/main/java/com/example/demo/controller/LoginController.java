@@ -10,6 +10,7 @@ public class LoginController {
     @RequestMapping("/login")
     public String showLoginForm(Model model) {
 
+        //ログイン画面へ遷移。
         return "users/login";
     }
 }
