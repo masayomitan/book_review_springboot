@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 
 
@@ -31,7 +32,7 @@ public class BookRepositoryImpl implements BookRepository{
   @Override
   public List<Book> findAll() {
 
-    String sql = "SELECT book.id, title, author, publisher, buy_date, release_date, genre, over_view, img_file FROM Book";
+    String sql = "SELECT book.id, title, author, publisher, buy_date, release_date, genre, over_view, book_image FROM Book";
     
     return jdbcTemplate.query(sql,new BeanPropertyRowMapper<Book>(Book.class));
     
@@ -41,7 +42,7 @@ public class BookRepositoryImpl implements BookRepository{
     @Override
     public Optional<Book> findOne(int id) {
       
-      String sql = "SELECT book.id, title, author, publisher, buy_date, release_date, genre, over_view, img_file FROM book "
+      String sql = "SELECT book.id, title, author, publisher, buy_date, release_date, genre, over_view, book_image FROM book "
         + "WHERE id = ?";
         
       Map<String, Object> result = jdbcTemplate.queryForMap(sql, id);
@@ -55,7 +56,7 @@ public class BookRepositoryImpl implements BookRepository{
         book.setReleaseDate((Date)result.get("release_date"));
         book.setGenre((String)result.get("Genre"));
         book.setOverView((String)result.get("over_view"));
-        book.setImgFile((byte[])result.get("img_file"));
+        book.setBookImage((MultipartFile)result.get("book_image"));
         System.out.println(result);
         //bookをOptionalでラップする
         Optional<Book> bookOpt = Optional.ofNullable(book);
@@ -64,14 +65,14 @@ public class BookRepositoryImpl implements BookRepository{
 
       @Override
       public void save(Book book) {
-        jdbcTemplate.update("INSERT INTO book(title, author, publisher, buy_date, release_date, genre, over_view, img_file) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
-        book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getGenre(), book.getOverView() );
+        jdbcTemplate.update("INSERT INTO book(title, author, publisher, buy_date, release_date, genre, over_view, book_image) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
+        book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getGenre(), book.getOverView(), book.getBookImage() );
       }
       
       
       @Override
       public int update(Book book) {
-        return   jdbcTemplate.update("UPDATE book SET title = ?, author = ?, publisher = ?, buy_date = ?, release_date = ?, genre = ?, over_view = ?, img_file = ? WHERE id = ?",
+        return   jdbcTemplate.update("UPDATE book SET title = ?, author = ?, publisher = ?, buy_date = ?, release_date = ?, genre = ?, over_view = ?, book_image = ? WHERE id = ?",
         book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getGenre(), book.getOverView(), book.getId() );
       }
 

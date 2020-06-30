@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Book {
 
 
@@ -13,7 +15,7 @@ public class Book {
   private Date   releaseDate;
   private String genre;
   private String overView;
-  private byte[] imgFile;
+  private MultipartFile bookImage;
 
   public int getId() {
     return id;
@@ -71,13 +73,13 @@ public class Book {
     this.overView = overView;
   }
 
-  public byte[] getImgFile() {
-    return imgFile;
-}
-public void setImgFile(byte[] imgFile) {
-    this.imgFile = imgFile;
-}
+  public MultipartFile getBookImage() {
+    return bookImage;
+  }
 
+  public void setBookImage(MultipartFile bookImage) {
+    this.bookImage = bookImage;
+  }
 
 
 }

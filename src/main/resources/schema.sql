@@ -1,3 +1,12 @@
+CREATE TABLE user (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  username varchar(50) NOT NULL,
+  email varchar(70) NOT NULL,
+  pass varchar(50) NOT NULL,
+  introduce varchar(255)
+  PRIMARY KEY (id)
+);
+
 CREATE TABLE book (
   id int(11) NOT NULL AUTO_INCREMENT,
   title varchar(50) DEFAULT NULL,
@@ -7,6 +16,6 @@ CREATE TABLE book (
   release_date date,
   genre varchar(20) DEFAULT NULL,
   over_view varchar(50) DEFAULT NULL,
-  img_file BLOB DEFAULT NULL,
+  book_image BLOB DEFAULT NULL,
   PRIMARY KEY (id)
 ) ;

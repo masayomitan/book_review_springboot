@@ -32,8 +32,10 @@ import org.springframework.web.multipart.MultipartFile;
 public class BookController {
 
 
+
   private final BookService bookService;
 
+  
   @Autowired
     public BookController(BookService bookService) {
         this.bookService = bookService;
@@ -41,7 +43,6 @@ public class BookController {
   
   @GetMapping
   public String index(Model model) {
-     //Taskのリストを取得する
     List<Book> book = bookService.findAll();
     model.addAttribute("book", book);
     return "books/index";
@@ -58,18 +59,16 @@ public class BookController {
     selectMap.put("7", "その他");
     return selectMap;
   } 
-  
 
   @GetMapping("new")
-  public String newBook(Model model, @RequestParam("img_file") MultipartFile file) {
+  public String newBook(@RequestParam("bookImage") MultipartFile bookImage, Model model) {
     model.addAttribute("selectBooks",getGenre());
-    
+    bookImage.getOriginalFilename();
       return "books/new";
   }
 
-
   @PostMapping
-	public String create(@ModelAttribute("book") @Validated Book book, BindingResult result, Model model, @RequestParam("img_file") MultipartFile file) {
+	public String create(@ModelAttribute("book") @Validated Book book, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "books/new";
 		} else {
