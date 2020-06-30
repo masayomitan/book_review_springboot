@@ -1,9 +1,9 @@
 CREATE TABLE user (
   id int(11) NOT NULL AUTO_INCREMENT,
-  username varchar(50) NOT NULL,
+  name varchar(50) NOT NULL,
   email varchar(70) NOT NULL,
   pass varchar(50) NOT NULL,
-  introduce varchar(255)
+  introduce varchar(255) DEFAULT NULL,
   PRIMARY KEY (id)
 );
 
