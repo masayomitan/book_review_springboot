@@ -1,12 +1,23 @@
 package com.example.demo.entity;
 
-public class User {
 
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.web.multipart.MultipartFile;
+
+@Entity
+@Table(name="user")
+public class User  {
+
+  @Id
   private int id;
   private String name;
   private String pass;
-  private String email;
   private String introduce;
+  private MultipartFile userImage;
 
     public int getId() {
       return id;
@@ -32,20 +43,20 @@ public class User {
         this.pass = pass;
     }
 
-      public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getIntroduce() {
       return introduce;
     }
-
+  
     public void setIntroduce(String introduce) {
-        this.introduce = introduce;
+      this.introduce = introduce;
+    }
+
+    public MultipartFile getUserImage() {
+      return userImage;
+    }
+  
+    public void setUserImage(MultipartFile userImage) {
+      this.userImage = userImage;
     }
 
 }

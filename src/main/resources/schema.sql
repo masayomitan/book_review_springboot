@@ -1,9 +1,9 @@
 CREATE TABLE user (
   id int(11) NOT NULL AUTO_INCREMENT,
   name varchar(50) NOT NULL,
-  email varchar(70) NOT NULL,
-  pass varchar(50) NOT NULL,
+  pass varchar(60) NOT NULL,
   introduce varchar(255) DEFAULT NULL,
+  book_image BLOB DEFAULT NULL,
   PRIMARY KEY (id)
 );
 
