@@ -2,17 +2,12 @@ package com.example.demo.entity;
 
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import org.springframework.web.multipart.MultipartFile;
 
-@Entity
-@Table(name="user")
+
 public class User  {
 
-  @Id
+
   private int id;
   private String name;
   private String pass;
