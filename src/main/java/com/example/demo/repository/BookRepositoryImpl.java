@@ -73,7 +73,7 @@ public class BookRepositoryImpl implements BookRepository{
       @Override
       public int update(Book book) {
         return   jdbcTemplate.update("UPDATE book SET title = ?, author = ?, publisher = ?, buy_date = ?, release_date = ?, genre = ?, over_view = ?, book_image = ? WHERE id = ?",
-        book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getGenre(), book.getOverView(), book.getId() );
+        book.getTitle(), book.getAuthor(), book.getPublisher(), book.getBuyDate(), book.getReleaseDate(), book.getGenre(), book.getOverView(),book.getBookImage(), book.getId() );
       }
 
       @Override
