@@ -1,7 +1,6 @@
 package com.example.demo.repository;
 
-import java.sql.Date;
-import java.util.List;
+
 import java.util.Map;
 import java.util.Optional;
 
@@ -39,7 +38,25 @@ public class UserRepositoryImpl implements UserRepository{
       user.setUserImage((MultipartFile)result.get("user_image"));
       System.out.println(result);
       //bookをOptionalでラップする
-      Optional<User> bookOpt = Optional.ofNullable(user);
-      return bookOpt;
-}
+      Optional<User> userOpt = Optional.ofNullable(user);
+      return userOpt;
+    }
+
+    @Override
+    public void save(User user) {
+      jdbcTemplate.update("INSERT INTO user(name, pass, introduce, user_image) VALUES(?, ?, ?, ?)",
+      user.getName(), user.getPass(), user.getIntroduce(), user.getUserImage() );
+    }
+    
+    @Override
+    public int update(User user) {
+      return   jdbcTemplate.update("UPDATE user SET name = ?, pass = ?, introduce = ?, user_image = ? WHERE id = ?",
+      user.getName(), user.getPass(), user.getIntroduce(), user.getUserImage() );
+    }
+
+    @Override
+    public int delete(int id) {
+      return jdbcTemplate.update("DELETE FROM book WHERE id = ?", id);
+    }
+
 }

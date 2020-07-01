@@ -6,8 +6,8 @@
 </head>
 <body>
     <h1>新規ユーザー登録</h1>
-    <form th:action="@{/newuser}" method="post">
-        <div><label>ユーザ名: <input type="text" name="username"/> </label></div>
+    <form th:action="@{/users}" method="post">
+        <div><label>ユーザ名: <input type="text" name="name"/> </label></div>
         <div><label>パスワード: <input type="password" name="pass"/> </label></div>
         
         <div><input type="submit" value="登録"/></div>
