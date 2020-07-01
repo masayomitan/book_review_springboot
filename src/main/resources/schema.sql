@@ -3,7 +3,7 @@ CREATE TABLE user (
   name varchar(50) NOT NULL,
   pass varchar(60) NOT NULL,
   introduce varchar(255) DEFAULT NULL,
-  book_image BLOB DEFAULT NULL,
+  user_image BLOB DEFAULT NULL,
   PRIMARY KEY (id)
 );
 
