@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import java.util.List;
+// import java.util.List;
 import java.util.Optional;
 
 import com.example.demo.entity.User;
@@ -21,10 +21,10 @@ public class UserServiceImpl implements UserService {
 		this.userRepository = userRepository;
   }
 
-  @Override
-	public List<User> findAll() {
-		return userRepository.findAll();
-	}
+  // @Override
+	// public List<User> findAll() {
+	// 	return userRepository.findAll();
+	// }
   
 	@Override
 	public  Optional<User> findOne(int id) {

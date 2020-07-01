@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import java.util.List;
+// import java.util.List;
 import java.util.Optional;
 
 import com.example.demo.entity.User;
@@ -8,7 +8,7 @@ import com.example.demo.entity.User;
 
 public interface UserService {
   
-  List<User> findAll();
+  // List<User> findAll();
 
 	Optional<User> findOne(int id);
 
