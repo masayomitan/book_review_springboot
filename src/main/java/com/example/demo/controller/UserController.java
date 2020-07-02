@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.List;
 import com.example.demo.entity.User;
-import com.example.demo.service.UserServiceImpl;
+import com.example.demo.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,20 +16,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
+
  
 @Controller
 @RequestMapping("/users")
 public class UserController {
     
   
-  private final UserServiceImpl userService;
-
   @Autowired
-  public UserController(UserServiceImpl userService) {
-      this.userService = userService;
+  private UserService userService;
+
+  
+  @GetMapping
+  public String index(Model model) { // ②
+      List<User> users = userService.findAll();
+      model.addAttribute("users", users); // ③
+      return "players/index"; // ④
   }
 
-  @GetMapping
+
+  @GetMapping("new")
   public String newUser(@ModelAttribute("user") User user, Model model) {
 		return "users/register";
 	}
@@ -43,4 +50,5 @@ public class UserController {
         return "books/index";
       }
     }
+
   }

@@ -70,6 +70,7 @@ public class BookController {
   @PostMapping
 	public String create(@ModelAttribute("book") @Validated Book book, BindingResult result, Model model) {
 		if (result.hasErrors()) {
+      model.addAttribute("selectBooks",getGenre());
 			return "books/new";
 		} else {
 			bookService.save(book);
