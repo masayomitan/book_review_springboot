@@ -1,18 +1,30 @@
 package com.example.demo.entity;
 
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import org.springframework.web.multipart.MultipartFile;
 
-
+@Entity
+@Table(name="user")
 public class User  {
 
-
+  @Id
+  @Column(name="id")
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   private int id;
+  @Column(name="name")
   private String name;
+  @Column(name="pass")
   private String pass;
+  @Column(name="introduce")
   private String introduce;
-  private MultipartFile userImage;
+  @Column(name="user_image")
+  private Byte[] userImage;
 
     public int getId() {
       return id;
@@ -46,11 +58,11 @@ public class User  {
       this.introduce = introduce;
     }
 
-    public MultipartFile getUserImage() {
+    public Byte[] getUserImage() {
       return userImage;
     }
   
-    public void setUserImage(MultipartFile userImage) {
+    public void setUserImage(Byte[] userImage) {
       this.userImage = userImage;
     }
 

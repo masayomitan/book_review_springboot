@@ -61,7 +61,9 @@ public class BookRepositoryImpl implements BookRepository{
         //bookをOptionalでラップする
         Optional<Book> bookOpt = Optional.ofNullable(book);
         return bookOpt;
-	}
+  }
+  
+  
 
       @Override
       public void save(Book book) {

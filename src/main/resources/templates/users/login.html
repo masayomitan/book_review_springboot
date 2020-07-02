@@ -9,11 +9,10 @@
         エラー: ユーザ名・パスワードが違います。
     </div>
     <form th:action="@{/login}" method="post">
-        <div><label>ユーザ名: <input type="text" name="name"/> </label></div>
-        <div><label>パスワード: <input type="password" name="pass"/> </label></div>
-        <div><input type="submit" value="ログイン"/></div>
+        <div><label> User Name : <input type="text" name="name"/> </label></div>
+        <div><label> Password: <input type="password" name="pass"/> </label></div>
+        <div><input type="submit" value="Sign In"/></div>
     </form>
-    <div><a href="/newuser">新規ユーザー登録</a></div>
     <a href="/">戻る</a>
 </body>
 </html>
